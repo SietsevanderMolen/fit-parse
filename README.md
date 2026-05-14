@@ -11,6 +11,20 @@ pip install -r requirements.txt
 python openclaw_fit_skill/fit_summary.py /path/to/activity.fit
 ```
 
+Coach-level detail (compact, interval-based):
+
+```bash
+python openclaw_fit_skill/fit_summary.py sample.fit --detail-interval 10s
+python openclaw_fit_skill/fit_summary.py sample.fit --detail-interval 1m --pretty-json
+python openclaw_fit_skill/fit_summary.py sample.fit --detail-interval 10m --pretty-json
+python openclaw_fit_skill/fit_summary.py sample.fit --detail-interval 1m --hr-zone-scheme 55-65,65-75,75-85,85-92,92-100 --pretty-json
+python openclaw_fit_skill/fit_summary.py sample.fit --detail-interval 1m --hr-zone-mode bpm --hr-zone-scheme 105-124,124-143,143-162,162-175,175-190 --pretty-json
+```
+
+`--detail-interval` accepts values like `10s`, `1m`, `10m`.
+`--hr-zone-scheme` accepts comma-separated ranges.
+Use `--hr-zone-mode percent` for max-HR percentages, or `--hr-zone-mode bpm` for absolute BPM zones.
+
 ## Files
 
 - `SKILL.md`: skill instructions and usage

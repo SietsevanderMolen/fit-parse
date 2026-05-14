@@ -39,6 +39,18 @@ JSON output:
 python openclaw_fit_skill/fit_summary.py /path/to/activity.fit --pretty-json
 ```
 
+Higher-detail coach summary:
+
+```bash
+python openclaw_fit_skill/fit_summary.py /path/to/activity.fit --detail-interval 10s --pretty-json
+python openclaw_fit_skill/fit_summary.py /path/to/activity.fit --detail-interval 1m --pretty-json
+python openclaw_fit_skill/fit_summary.py /path/to/activity.fit --detail-interval 10m --pretty-json
+python openclaw_fit_skill/fit_summary.py /path/to/activity.fit --detail-interval 1m --hr-zone-scheme 55-65,65-75,75-85,85-92,92-100 --pretty-json
+```
+
+`--detail-interval` values are compact buckets (`<N>s` or `<N>m`) to keep output LLM-friendly.
+`--hr-zone-scheme` sets custom HR zones as max-HR percentages (comma-separated ranges).
+
 ## Inputs
 
 - A single `.fit` file path.
@@ -47,6 +59,10 @@ python openclaw_fit_skill/fit_summary.py /path/to/activity.fit --pretty-json
 
 - Text report (default)
 - JSON document (`--json` or `--pretty-json`)
+- Includes coach-detail blocks:
+  - interval metrics (HR/speed/power/cadence per bucket)
+  - HR zone distribution
+  - 1km split trend
 
 ## Notes
 
