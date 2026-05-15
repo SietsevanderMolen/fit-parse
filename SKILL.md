@@ -33,6 +33,12 @@ Run summary:
 python openclaw_fit_skill/fit_summary.py /path/to/activity.fit
 ```
 
+Default output is detailed JSON. Use compact text mode:
+
+```bash
+python openclaw_fit_skill/fit_summary.py /path/to/activity.fit --summary
+```
+
 JSON output:
 
 ```bash
@@ -57,8 +63,8 @@ python openclaw_fit_skill/fit_summary.py /path/to/activity.fit --detail-interval
 
 ## Outputs
 
-- Text report (default)
-- JSON document (`--json` or `--pretty-json`)
+- Detailed JSON document (default)
+- Compact text report (`--summary`)
 - Includes coach-detail blocks:
   - interval metrics (HR/speed/power/cadence per bucket)
   - HR zone distribution

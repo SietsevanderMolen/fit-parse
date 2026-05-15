@@ -11,6 +11,8 @@ pip install -r requirements.txt
 python openclaw_fit_skill/fit_summary.py /path/to/activity.fit
 ```
 
+Default output is detailed JSON (LLM-friendly coach view). Use `--summary` for compact text.
+
 Coach-level detail (compact, interval-based):
 
 ```bash
@@ -33,7 +35,7 @@ Use `--hr-zone-mode percent` for max-HR percentages, or `--hr-zone-mode bpm` for
 
 ## Example outputs
 
-Text summary (default):
+Text summary:
 
 ```text
 Source: workouts/run.fit
@@ -50,4 +52,11 @@ JSON summary:
 
 ```bash
 python openclaw_fit_skill/fit_summary.py workouts/run.fit --pretty-json
+python openclaw_fit_skill/fit_summary.py workouts/run.fit
+```
+
+Compact summary mode:
+
+```bash
+python openclaw_fit_skill/fit_summary.py workouts/run.fit --summary
 ```

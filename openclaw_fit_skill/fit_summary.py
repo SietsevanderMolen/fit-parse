@@ -678,6 +678,11 @@ def build_arg_parser() -> argparse.ArgumentParser:
     parser = argparse.ArgumentParser(description="Summarize FIT exercise files with fitdecode")
     parser.add_argument("fit_file", help="Path to input .fit file")
     parser.add_argument(
+        "--summary",
+        action="store_true",
+        help="Print compact text summary instead of detailed JSON output.",
+    )
+    parser.add_argument(
         "--detail-interval",
         default=DEFAULT_DETAIL_INTERVAL,
         help="Detail bucket interval for coach metrics (examples: 10s, 1m, 10m). Default: 1m",
@@ -697,7 +702,7 @@ def build_arg_parser() -> argparse.ArgumentParser:
     parser.add_argument(
         "--pretty-json",
         action="store_true",
-        help="Print pretty-formatted JSON summary",
+        help="Pretty-format JSON output (detailed JSON is the default output mode).",
     )
     return parser
 
@@ -715,11 +720,12 @@ def main() -> int:
         hr_zone_mode=args.hr_zone_mode,
     )
 
-    if args.json or args.pretty_json:
-        indent = 2 if args.pretty_json else None
-        print(json.dumps(summary, default=str, indent=indent))
-    else:
+    if args.summary:
         print(render_text_summary(summary))
+    else:
+        # Default output is detailed JSON for LLM-friendly coach analysis.
+        indent = 2 if (args.pretty_json or not args.json) else None
+        print(json.dumps(summary, default=str, indent=indent))
 
     return 0
 
